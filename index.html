@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <title>Petition Viewer</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel='stylesheet' type='text/css' href='css/site.css' />
+</head>
+<body>
+
+    <header>
+        <h1>Petition Viewer</h1>
+        <p>Web Application to view data from <a href='https://petition.parliament.uk/'>https://petition.parliament.uk/</a>
+        <hr/>
+    </header>
+
+    <main>
+        <img src='res/ajax-loader.gif' alt='Loading..' id='loader' />
+
+        <div id='petition_header'>
+            <h2 id='action'></h2>
+            <p id='state'></p>
+        </div>
+      
+        <p id='background'></p>
+
+        <label for='signature_count'>Signature Count:</label>
+        <p id='signature_count'></p>
+
+        <p id='created_at'></p>
+        <p id='government_response_at'></p>
+        <p id='creator_name'></p>
+        <p id='government_response'></p>
+
+    </main>
+
+    <script src='js/jquery/jquery.min.js'></script>
+    <script src='js/chartjs/Chart.min.js'></script>
+    <script src='js/site.js' ></script>
+</body>
+</html>
