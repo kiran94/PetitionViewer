@@ -1,0 +1,43 @@
+@font-family: "Open+Sans"; 
+
+html, body{
+    font-family: @font-family;
+
+    #loader
+    {
+        display: block;
+        margin: 0 auto; 
+    }
+
+    #petition_header
+    {
+        width: 100%;
+        display: inline-block;  
+
+        #action
+        {
+            display: inline-block; 
+            width: 75%; 
+        }
+
+        #state
+        {
+            display: inline-block; 
+            width: 20%; 
+            padding: 10px; 
+            color: white; 
+            font-size: 20px; 
+            text-align: center; 
+
+            .openState
+            {
+                background-color: lightgreen; 
+            }
+
+            .closedState
+            {
+                background-color: red; 
+            }
+        }
+    }
+}
