@@ -24,17 +24,27 @@
             <h2 id='action'></h2>
             <p id='state'></p>
         </div>
-      
+
+        <div id='createdSignature_header'>
+            <div class='data-block' id='created'>
+                <label for='creator_name'>Created By</label>
+                <p id='creator_name' class='italic'></p> on <p id='created_at' class='italic'></p>
+            </div>
+
+             <p id='signature_count'></p>
+        </div>
+
         <p id='background'></p>
-
-        <label for='signature_count'>Signature Count:</label>
-        <p id='signature_count'></p>
-
-        <p id='created_at'></p>
+        
         <p id='government_response_at'></p>
-        <p id='creator_name'></p>
         <p id='government_response'></p>
 
+        <div id='signatureStats'>
+            <div class='signatureOrdered'>test</div>
+            <canvas id='signaturesByCountry'></canvas>
+            <canvas id='signaturesByCountryWithUK'></canvas>
+        </div>
+    
     </main>
 
     <script src='js/jquery/jquery.min.js'></script>

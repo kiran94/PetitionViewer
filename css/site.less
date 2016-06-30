@@ -1,5 +1,10 @@
 @font-family: "Open+Sans"; 
 
+.debug
+{
+    border: 1px solid black; 
+}
+
 html, body{
     font-family: @font-family;
 
@@ -9,8 +14,30 @@ html, body{
         margin: 0 auto; 
     }
 
+    .italic 
+    {
+        font-style: italic; 
+    }
+
+    .data-block
+    {
+        margin: 0; 
+        padding: 0; 
+        label
+        {
+                display: inline-block; 
+        }
+
+        p 
+        {
+                display: inline-block; 
+        }
+    }
+
     #petition_header
     {
+        margin: 0; 
+        padding: 0; 
         width: 100%;
         display: inline-block;  
 
@@ -25,19 +52,68 @@ html, body{
             display: inline-block; 
             width: 20%; 
             padding: 10px; 
-            color: white; 
             font-size: 20px; 
             text-align: center; 
+        }
 
-            .openState
-            {
-                background-color: lightgreen; 
-            }
+        .openState
+        {
+            background-color: lightgreen; 
+            color: white; 
+        }
 
-            .closedState
-            {
-                background-color: red; 
-            }
+        .closedState
+        {
+            background-color: red; 
+            color: white; 
+        }
+    }
+
+    #createdSignature_header
+    {
+        #created
+        {
+            display: inline-block;  
+            width: 75%; 
+        }
+
+        #signature_count
+        {
+              display: inline-block;  
+              width: 20%; 
+              color: black; 
+              font-size: 20px; 
+              font-weight: 900; 
+        }
+    }
+
+    #signatureStats
+    {
+        .debug; 
+        display: inline-block; 
+        @chartSize: 100px; 
+
+        #signatureOrdered
+        {
+            display: inline-block; 
+            width: 100px; 
+             .debug;
+        }
+
+        #signaturesByCountry
+        {
+            display: inline-block; 
+            height: @chartSize; 
+            width: @chartSize; 
+             .debug;
+        }
+
+        #signaturesByCountryWithUK
+        {
+            display: inline-block; 
+            height: @chartSize; 
+            width: @chartSize; 
+             .debug;
         }
     }
 }
