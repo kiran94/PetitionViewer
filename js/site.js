@@ -19,13 +19,20 @@ var dataDictionary;
 var limit = 10; 
 
 /*
+    Default Petition URL to display on the page
+*/
+var defaultPetitionURL = 'https://petition.parliament.uk/petitions/131215.json'; 
+
+/*
     Run when all elements on the page have been loaded
 */
 $(document).ready(function()
 {
+    document.getElementById('currentURL').value = defaultPetitionURL; 
+
     init(function()
     {
-        GetData('https://petition.parliament.uk/petitions/131215.json', null, ApplyPetitionToDOM); 
+        GetData(defaultPetitionURL, null, ApplyPetitionToDOM); 
     }); 
 });
 
@@ -239,6 +246,7 @@ function sort(data, swapCriteria)
 
 /*
     Sets the Largest Signature Counts to the DOM unordered list
+    @param orderedArray: pre-ordered array to display signature counts for
 */
 function setLargestSignatureCounts(orderedArray)
 {
