@@ -142,11 +142,11 @@ function setPetitionState()
         state.innerHTML = state.innerHTML.toUpperCase(); 
         if(state.innerHTML == "OPEN")
         {
-            state.className += " openState"; 
+            state.className = " openState"; 
         }
         else
         {
-            state.className += " closedState"; 
+            state.className = " closedState"; 
         }
 }
 
@@ -255,7 +255,9 @@ function sort(data, swapCriteria)
 */
 function setLargestSignatureCounts(orderedArray)
 {
-    var list = document.getElementById("signatureList"); 
+    var list = document.getElementById("signatureList");
+    list.innerHTML = ""; 
+    
 
     for (var i=0; i < orderedArray.length && i < limit; i++)
     {
