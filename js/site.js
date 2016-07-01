@@ -206,7 +206,7 @@ function GenerateWithUKChart(currentChartID, data)
 function GenerateChart(currentChartID, countries, plots, color, title)
 {
     var canvas = document.getElementById(currentChartID); 
-
+    
     var chart = new Chart(canvas, 
     {
         type: 'pie', 

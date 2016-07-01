@@ -13,6 +13,9 @@ html, body{
     header
     {
         text-align: center; 
+        background: url("../res/pattern.png") no-repeat; 
+        background-position: cover; 
+        color: white; 
 
         input[type='text']
         {
@@ -20,7 +23,11 @@ html, body{
             margin-top: 10px; 
         }
 
-        //position: fixed; 
+        h1
+        {
+            margin: 0; 
+            padding: 0; 
+        }
     }
 
     main 
@@ -111,32 +118,37 @@ html, body{
 
         #signatureStats
         {
-            
-            
-            @chartSize: 100px; 
-
             #signatureOrdered
             {
-                //display: inline-block; 
                 width: 300px; 
-                
             }
 
-            #signaturesByCountry
+            #charts, #chart2
             {
-                //display: inline-block; 
-                //height: @chartSize; 
-                width: @chartSize; 
-                
-            }
+                @chartSize: 100px; 
+                height: 200px; 
+                width: 100%;
+                display: inline-block; 
 
-            #signaturesByCountryWithUK
-            {
-                //display: inline-block; 
-                //height: @chartSize; 
-                width: @chartSize; 
-                
-            }
+                #signaturesByCountry
+                {
+                    display: inline-block; 
+                    width: @chartSize; 
+                    height: @chartSize;    
+                }
+
+                #signaturesByCountryWithUK
+                {
+                    display: inline-block; 
+                    width: @chartSize; 
+                    height: @chartSize;   
+                }
+            }            
         }
+    }
+
+    footer
+    {
+        text-align: center; 
     }
 }
