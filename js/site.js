@@ -32,14 +32,12 @@ function init(callback)
     loader = document.getElementById("loader"); 
     dataDictionary = new Array(); 
 
-    var headerArray = ["action", "background", "state", "signature_count", "created_at", "government_response_at", "creator_name", "government_response" ]; 
-
-    for (var i=0; i<headerArray.length; i++)
+    for (var i=0; i < headerArray.length; i++)
     {
         dataDictionary[headerArray[i]] = document.getElementById(headerArray[i]); 
     }
 
-    callback(); 
+    callback();
 }
 
 /*
@@ -76,9 +74,26 @@ function ApplyPetitionToDOM(data, status, xhr)
         dataDictionary["signature_count"].innerHTML += " Signatures"; 
         dataDictionary["created_at"].innerHTML = dataDictionary["created_at"].innerHTML.replace("T", " ").replace("Z", " "); 
 
-
         GenerateWithoutUKChart("signaturesByCountry", data.data.attributes.signatures_by_country); 
         GenerateWithUKChart("signaturesByCountryWithUK", data.data.attributes.signatures_by_country);
+
+        var orderedArray = sort(data.data.attributes.signatures_by_country, function(a, b)
+        {
+            if (a.signature_count > b.signature_count)
+            {
+                return -1; 
+            }
+            else if (a.signature_count == b.signature_count)
+            {
+                return 0; 
+            }
+            else
+            {
+                return 1; 
+            } 
+        }); 
+
+        setLargestSignatureCounts(orderedArray); 
     }
     else
     {
@@ -97,7 +112,7 @@ function setPageHeaders(data)
         var currentElement = dataDictionary[headerArray[i]];  
         if (currentElement != null)
         {
-                currentElement.innerHTML = data.data.attributes[headerArray[i]]; 
+            currentElement.innerHTML = data.data.attributes[headerArray[i]]; 
         }
     }
 }
@@ -121,6 +136,7 @@ function setPetitionState()
 
 /*
     Generates a chart without UK data
+    @currentChartID: DOM element ID
     @param data to be applied to chart
 */
 function GenerateWithoutUKChart(currentChartID, data)
@@ -144,6 +160,7 @@ function GenerateWithoutUKChart(currentChartID, data)
 
 /*
     Generates a chart with UK data
+    @currentChartID: DOM element ID
     @param data to be applied to chart
 */
 function GenerateWithUKChart(currentChartID, data)
@@ -164,6 +181,11 @@ function GenerateWithUKChart(currentChartID, data)
 
 /*
     Generates a chart 
+    @currentChartID: DOM element ID
+    @countries: Labels of countries to plot 
+    @plots: data to plot 
+    @color: colors to plot 
+    @title: title of the chart 
 */
 function GenerateChart(currentChartID, countries, plots, color, title)
 {
@@ -197,4 +219,29 @@ function GenerateChart(currentChartID, countries, plots, color, title)
             }
         }
     }); 
+}
+
+/*
+    Performs a sort on the data array in desc if orderDesc is true, else ascending
+    @data: data array to sort 
+    @swapCriteria: anon function to determine if a swap should occur
+*/
+function sort(data, swapCriteria)
+{
+    return data.sort(swapCriteria); 
+}
+
+function setLargestSignatureCounts(orderedArray)
+{
+    var list = document.getElementById("signatureList"); 
+    var limit = 10; 
+
+    for (var i=0; i < orderedArray.length && i < limit; i++)
+    {
+        var newNode = document.createElement("li"); 
+        var textNode = document.createTextNode(orderedArray[i].name + " (" + orderedArray[i].signature_count + ")"); 
+        newNode.appendChild(textNode); 
+        list.appendChild(newNode); 
+    }
+    
 }
