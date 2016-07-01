@@ -14,6 +14,11 @@ var headerArray = ["action", "background", "state", "signature_count", "created_
 var dataDictionary; 
 
 /*
+    Number of elements to display in the top x countries in terms of signatures
+*/  
+var limit = 10; 
+
+/*
     Run when all elements on the page have been loaded
 */
 $(document).ready(function()
@@ -37,6 +42,7 @@ function init(callback)
         dataDictionary[headerArray[i]] = document.getElementById(headerArray[i]); 
     }
 
+    registerURLButton(); 
     callback();
 }
 
@@ -126,11 +132,11 @@ function setPetitionState()
         state.innerHTML = state.innerHTML.toUpperCase(); 
         if(state.innerHTML == "OPEN")
         {
-            state.className += "openState"; 
+            state.className += " openState"; 
         }
         else
         {
-            state.className += "closedState"; 
+            state.className += " closedState"; 
         }
 }
 
@@ -224,17 +230,19 @@ function GenerateChart(currentChartID, countries, plots, color, title)
 /*
     Performs a sort on the data array in desc if orderDesc is true, else ascending
     @data: data array to sort 
-    @swapCriteria: anon function to determine if a swap should occur
+    @swapCriteria: comparison function
 */
 function sort(data, swapCriteria)
 {
     return data.sort(swapCriteria); 
 }
 
+/*
+    Sets the Largest Signature Counts to the DOM unordered list
+*/
 function setLargestSignatureCounts(orderedArray)
 {
     var list = document.getElementById("signatureList"); 
-    var limit = 10; 
 
     for (var i=0; i < orderedArray.length && i < limit; i++)
     {
@@ -242,6 +250,21 @@ function setLargestSignatureCounts(orderedArray)
         var textNode = document.createTextNode(orderedArray[i].name + " (" + orderedArray[i].signature_count + ")"); 
         newNode.appendChild(textNode); 
         list.appendChild(newNode); 
-    }
-    
+    } 
+}
+
+/*
+    Registers the URL Button with a click event
+*/
+function registerURLButton()
+{
+    var urlButton = document.getElementById("currentURLButton"); 
+    urlButton.addEventListener('click', function()
+    {
+        var urlLink = document.getElementById("currentURL").value; 
+        if (urlLink)
+        {
+            GetData(urlLink, null, ApplyPetitionToDOM); 
+        }
+    }); 
 }

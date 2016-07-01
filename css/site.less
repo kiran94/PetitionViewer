@@ -7,113 +7,133 @@
 
 html, body{
     font-family: @font-family;
+    margin: 0; 
+    padding: 0; 
 
-    #loader
+    header
     {
-        display: block;
-        margin: 0 auto; 
-    }
+        text-align: center; 
 
-    .italic 
-    {
-        font-style: italic; 
-    }
-
-    .data-block
-    {
-        margin: 0; 
-        padding: 0; 
-        label
+        input[type='text']
         {
-                display: inline-block; 
-        }
-
-        p 
-        {
-                display: inline-block; 
+            width: 50%; 
+            margin-top: 10px; 
         }
     }
 
-    #petition_header
+    main 
     {
-        margin: 0; 
-        padding: 0; 
-        width: 100%;
-        display: inline-block;  
+        width: 80%; 
+        margin: 0 auto;
+        .debug;  
 
-        #action
+        #loader
         {
-            display: inline-block; 
-            width: 75%; 
+            display: block;
+            margin: 0 auto; 
         }
 
-        #state
+        .italic 
         {
-            display: inline-block; 
-            width: 20%; 
-            padding: 10px; 
-            font-size: 20px; 
-            text-align: center; 
+            font-style: italic; 
         }
 
-        .openState
+        .data-block
         {
-            background-color: lightgreen; 
-            color: white; 
+            margin: 0; 
+            padding: 0; 
+            label
+            {
+                    display: inline-block; 
+            }
+
+            p 
+            {
+                    display: inline-block; 
+            }
         }
 
-        .closedState
+        #petition_header
         {
-            background-color: red; 
-            color: white; 
-        }
-    }
-
-    #createdSignature_header
-    {
-        #created
-        {
+            margin: 0; 
+            padding: 0; 
+            width: 100%;
             display: inline-block;  
-            width: 75%; 
+
+            #action
+            {
+                display: inline-block; 
+                width: 75%; 
+            }
+
+            #state
+            {
+                display: inline-block; 
+                width: 20%; 
+                padding: 10px; 
+                font-size: 20px; 
+                text-align: center; 
+            }
+
+            .openState
+            {
+                background-color: lightgreen; 
+                color: white; 
+            }
+
+            .closedState
+            {
+                background-color: red; 
+                color: white; 
+            }
         }
 
-        #signature_count
+        #createdSignature_header
         {
-              display: inline-block;  
-              width: 20%; 
-              color: black; 
-              font-size: 20px; 
-              font-weight: 900; 
+            #created
+            {
+                display: inline-block;  
+                width: 75%; 
+            }
+
+            #signature_count
+            {
+                display: inline-block;  
+                width: 20%; 
+                color: black; 
+                font-size: 20px; 
+                font-weight: 900; 
+            }
         }
-    }
 
-    #signatureStats
-    {
-        
-        
-        @chartSize: 100px; 
-
-        #signatureOrdered
+        #signatureStats
         {
-            //display: inline-block; 
-            width: 300px; 
             
-        }
-
-        #signaturesByCountry
-        {
-            //display: inline-block; 
-            //height: @chartSize; 
-            width: @chartSize; 
-             
-        }
-
-        #signaturesByCountryWithUK
-        {
-            //display: inline-block; 
-            //height: @chartSize; 
-            width: @chartSize; 
             
+            @chartSize: 100px; 
+
+            #signatureOrdered
+            {
+                //display: inline-block; 
+                width: 300px; 
+                
+            }
+
+            #signaturesByCountry
+            {
+                //display: inline-block; 
+                //height: @chartSize; 
+                width: @chartSize; 
+                
+            }
+
+            #signaturesByCountryWithUK
+            {
+                //display: inline-block; 
+                //height: @chartSize; 
+                width: @chartSize; 
+                
+            }
         }
     }
 }
