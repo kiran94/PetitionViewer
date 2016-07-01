@@ -48,8 +48,10 @@ function init(callback)
     {
         dataDictionary[headerArray[i]] = document.getElementById(headerArray[i]); 
     }
-
+    
     registerURLButton(); 
+    setFooterDate(); 
+
     callback();
 }
 
@@ -83,8 +85,9 @@ function ApplyPetitionToDOM(data, status, xhr)
     {
         setPageHeaders(data); 
         setPetitionState(); 
-       
-        dataDictionary["signature_count"].innerHTML += " Signatures"; 
+
+        var sigCount = dataDictionary["signature_count"].innerHTML; 
+        dataDictionary["signature_count"].innerHTML = numberWithCommas(sigCount) + " Signatures"; 
         dataDictionary["created_at"].innerHTML = dataDictionary["created_at"].innerHTML.replace("T", " ").replace("Z", " "); 
 
         GenerateWithoutUKChart("signaturesByCountry", data.data.attributes.signatures_by_country); 
@@ -229,7 +232,9 @@ function GenerateChart(currentChartID, countries, plots, color, title)
             {
                 text: title,
                 display: true,
-            }
+            },
+            maintainAspectRatio : false, 
+            responsive: true, 
         }
     }); 
 }
@@ -255,7 +260,7 @@ function setLargestSignatureCounts(orderedArray)
     for (var i=0; i < orderedArray.length && i < limit; i++)
     {
         var newNode = document.createElement("li"); 
-        var textNode = document.createTextNode(orderedArray[i].name + " (" + orderedArray[i].signature_count + ")"); 
+        var textNode = document.createTextNode(orderedArray[i].name + " (" + numberWithCommas(orderedArray[i].signature_count) + ")"); 
         newNode.appendChild(textNode); 
         list.appendChild(newNode); 
     } 
@@ -275,4 +280,22 @@ function registerURLButton()
             GetData(urlLink, null, ApplyPetitionToDOM); 
         }
     }); 
+}
+
+/*
+    Sets the Year in the footer
+*/
+function setFooterDate()
+{
+    var footerSpan = document.getElementById("date"); 
+    footerSpan.innerHTML = new Date().getFullYear(); 
+}
+
+/*
+    Formats a number with commas 
+    source: http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+*/
+function numberWithCommas(x) 
+{
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
